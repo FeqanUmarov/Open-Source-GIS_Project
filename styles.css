@@ -1,0 +1,395 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#map{
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+}
+
+.mousePosition{
+    position: fixed;
+    top: auto;
+    right: auto;
+    bottom: 5px;
+    left: 50%;
+    transform:translateX(-50%) ;
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: rgba(225,225,225,0.6);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12px;
+}
+
+.ol-popup{
+    position: absolute;
+    background-color: white;
+    box-shadow: 0.1px 4px rgba(0,0,0,0.2);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #cccccc;
+    bottom: 12px;
+    left: -50px;
+    min-width: 280px;
+}
+
+.ol-popup:after, .ol-popup:before{
+    top: 100%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+.ol-popup:after{
+    border-top-color: white;
+    border-width: 10px;
+    left: 48px;
+    margin-left: -10px;
+}
+
+.ol-popup:before{
+    border-top-color: #cccccc;
+    border-width: 11px;
+    left: 48px;
+    margin-left: -11px;
+}
+.ol-popup-closer{
+    text-decoration: none;
+    position:absolute;
+    top: 2px;
+    right: 8px;
+}
+.ol-popup-closer:after{
+    content: "X";
+}
+
+.myButton{
+    background-color: rgba(22,85,167,0.6);
+    color: white;
+    font-weight: 700;
+    text-align: center;
+    height: 25px;
+    width: 25px;
+    border-radius: 2px;
+    border: none;
+    align-items: center;
+}
+.myButton:hover{
+    background-color: rgba(0,60,136,1);
+}
+.myButton.clicked{
+    background-color: rgba(22,170,35,0.8);
+}
+.myButton.clicked:hover{
+    background-color: rgba(22,170,35,1);
+}
+.homeButtonDiv{
+    position: relative;
+    display: inline-block;
+    margin: 10px auto auto 10px;
+}
+
+.fsButtonDiv{
+    position: relative;
+    display: inline-block;
+    margin: 1px auto auto 10px;
+}
+
+.featureInfoDiv{
+    position: relative;
+    display: inline-block;
+    margin: 1px auto auto 10px;
+}
+.lengthButtonDiv{
+    position: relative;
+    display: inline-block;
+    margin: 1px auto auto 10px;
+}
+.areaButtonDiv{
+    position: relative;
+    display: inline-block;
+    margin: 1px auto auto 10px;
+}
+
+.ol-tooltip{
+    position: relative;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 4px;
+    color: white;
+    padding: 4px 5px;
+    opacity: 0.7;
+    white-space: nowrap;
+    font-size: 12px;
+}
+.ol-tooltip-measure{
+    opacity: 1;
+    font-weight: bold;
+}
+.ol-tooltip-static{
+    background-color: #ffcc33;
+    color: black;
+    border: 1px solid white;
+}
+.ol-tooltip-measure:before,
+.ol-tooltip-static:before{
+    border-top: 6px solid rgba(0,0,0,0.5);
+    border-right: 6px solid transparent;
+    border-left: 6px solid transparent;
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    margin-left: -7px;
+    left: 50%;
+}
+.ol-tooltip-static:before{
+    border-top-color: #ffcc33;
+}
+.ol-dragbox{
+    border: 2px dashed gray;
+    background-color: rgba(200,200,200,0.6);
+}
+.ziButtonDiv{
+    position: relative;
+    display: inline-block;
+    margin: 1px auto auto 10px;
+}
+.zoButtonDiv{
+    position: relative;
+    display: inline-block;
+    margin: 1px auto auto 10px;
+}
+.myButton{
+    position: relative;
+    display: inline-block;
+    margin: 1px auto auto 10px;
+}
+
+.attQueryDiv{
+    position: absolute;
+    display: none;
+    margin: 70px auto auto 45px;
+    width: 350px;
+    background-color: rgba(255,255,255,0.9);
+    font-family: inherit;
+    font-size: 1em;
+    line-height: 1.45;
+    border-radius: 2px;
+    border: 1px solid #d1d1d1;
+    box-shadow: 0px 0px 15px rgba(252,213,213,0.5);
+    z-index: 4;
+    overflow: scroll;
+}
+
+#headerDiv{
+    background-color: #12737c;
+    height: 35px;
+}
+#headerDiv label{
+    color: white;
+}
+.myButtonDiv{
+    position: relative;
+    display: inline-block;
+    margin: 1px auto auto 10px;
+}
+.attQueryDiv select{
+    width: 225px;
+    height: 35px;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    margin: 0px auto 0px 10px;
+}
+.attQueryDiv input{
+    width: 225px;
+    height: 35px;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    margin: 0px auto 0px 10px;
+}
+.attQueryDiv label{
+    color: grey;
+    margin: 10px 10px 0px 10px;
+}
+
+.attQryRun{
+    color: white;
+    background-color: #90b8af;
+    border-radius: 3px;
+    border: 1px solid #4d9695;
+    height: 35px;
+    width: 50px;
+    margin: 10px;
+}
+.attListDiv{
+    position: absolute;
+    display: none;
+    margin: 350px auto auto 350px;
+    width: auto;
+    max-width: 750px;
+    height: 250px;
+    background-color: rgba(255,255,255,0.9);
+    font-family: inherit;
+    font-size: 1em;
+    line-height: 1.45;
+    border-radius: 2px;
+    border: 1px solid #d1d1d1;
+    box-shadow: 2px 3px 2px rgba(0,0,0,0.5);
+    overflow: scroll;
+    z-index: 5;
+
+}
+.attListDiv-closer
+
+#attQryTable{
+    padding: 0;
+    border-collapse: collapse;
+
+}
+
+#attQryTable, td, th{
+    padding: 0px 5px 0px 5px;
+    border: 1px solid black;
+
+}
+
+#attQryTable th{
+    color: white;
+    background-color: #3baea0;
+    position: sticky;
+    top: 0;
+    font-style: normal;
+    padding: 5px 10px 5px 10px;
+
+}
+
+#attQryTable tr:hover{
+    background-color: lightgray;
+}
+
+.spUserInput{
+    color: white;
+    background-color: rgba(95,125,207);
+    border-radius: 3px;
+    border: 1px solid rgba(0,0,0);
+    height: 35px;
+    width: 50px;
+    margin: 10px;
+}
+#bufferDistance{
+    width: 100px;
+}
+#distanceUnits{
+    width: 100px;
+    margin: 0px auto 0px 20px;
+}
+.spUserInput.clicked{
+    background-color: rgba(230,107,107);
+}
+.spQryRun{
+    color: white;
+    background-color: green;
+    border-radius: 3px;
+    border: 1px solid black;
+    height: 35px;
+    width: 50px;
+    margin: 10px 22px 10px 22px;
+}
+.spQryClear{
+    color: white;
+    background-color: slategray;
+    border-radius: 3px;
+    border: 1px solid black;
+    height: 35px;
+    width: 50px;
+    margin: 10px;
+}
+.spQueryDiv{
+    position: absolute;
+    display: none;
+    top: 10px;
+    left: 45px;
+    width: 250px;
+    background-color: rgba(255,255,255,0.9);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1em;
+    line-height: 1.45;
+    border-radius: 2px;
+    border: 1px solid #d1d1d1;
+    box-shadow: 0px 0px 15px rgba(100,100,100,0.5);
+}
+.spQueryDiv select{
+    width: 225px;
+    height: 35px;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    margin: 0px auto 20px 10px;
+}
+.spQueryDiv input{
+    width: 225px;
+    height: 35px;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    margin: 0px auto 20px 10px;
+}
+.spQueryDiv label{
+    color: grey;
+    margin: 10px 10px 0px 10px;
+}
+.bufferButtonDiv{
+    position: relative;
+    display: inline-block;
+    margin: 1px auto auto 10px;
+}
+.settingsDiv{
+    position: absolute;
+    display: none;
+    margin: 65px auto auto 45px;
+    width: 250px;
+    height: 250px;
+    background-color: rgba(255,255,255,0.9);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1em;
+    line-height: 1.45;
+    border-radius: 2px;
+    border: 1px solid #d1d1d1;
+    box-shadow: 0px 0px 15px rgba(100,100,100,0.5);
+    z-index: 5  ;
+}
+.settingsDiv select{
+    width: 225px;
+    height: 35px;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    margin: 0px auto 20px 10px;
+}
+.settingsDiv label{
+    color: grey;
+    margin: 10px 10px 0px 10px;
+}
+.editingControlsDiv{
+    position: absolute;
+    display: none;
+    margin: 65px auto auto 45px;
+    width: 250px;
+    height: 250px;
+    background-color: rgba(255,255,255,0.9);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1em;
+    line-height: 1.45;
+    border-radius: 2px;
+    border: 1px solid #d1d1d1;
+    box-shadow: 0px 0px 15px rgba(100,100,100,0.5);
+    z-index: 5  ;
+}
